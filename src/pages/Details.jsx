@@ -11,10 +11,12 @@ function Details(){
         <>
             <Header />
             <section className="detail">
-                <h1>{product.title}</h1>
-                <img src={product.img} alt={product.title} />
-                <p>{product.precio}</p>
-                <p>{product.detail}</p>
+                <div className="detail__container">
+                    <h1 className="detail__title">{product.title}</h1>
+                    <img className="detail__image" src={product.img} alt={product.title} />
+                    <p className="detail__precio">{product.precio}</p>
+                    <p className="detail__texy">{product.detail}</p>
+                </div>
             </section>
         </>
     )
