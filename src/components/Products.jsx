@@ -46,7 +46,7 @@ return(
                 <div key={prod.id} className="card">
                     <h3 className="card__title">{prod.title}</h3>
                     <img src={prod.images} alt={prod.title} className="card__img" />
-                    <p className="card__precio">{prod.price}</p>
+                    <p className="card__precio">$ {prod.price}</p>
                     <Link to={`/details/${prod.id}`} className="card__link">Ver Detalle</Link>
                     <button className="card__btn" onClick={() => handleAddToCart(prod.id)}>Agregar al carrito</button>
                 </div>

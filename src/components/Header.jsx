@@ -12,8 +12,11 @@ function Header(){
             <Link to="/category/women" className="nav__link">Mujeres</Link>
             <Link to="/category/accessories" className="nav__link">Accesorios</Link> 
             <Link to="/about/" className="nav__link">Nosotros</Link>
+            <Link to="/cart" className="nav__link">
+                <CartWidget />
+            </Link>
+             
         </nav>
-        <CartWidget />
     </header>
     )
 }

@@ -6,10 +6,10 @@ function CartWidget() {
     const valueContext = useContext(myContext);
 
     return (
-        <div>
+        <span className="cart-widget">
             🛒
             <span>{valueContext.total}</span>
-        </div>
+        </span>
     );
 };
 

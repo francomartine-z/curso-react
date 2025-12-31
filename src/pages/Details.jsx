@@ -47,7 +47,7 @@ function Details(){
                 <div className="detail__container">
                     <h1 className="detail__title">{product.title}</h1>
                     <img className="detail__image" src={product.images} alt={product.title} />
-                    <p className="detail__precio">{product.price}</p>
+                    <p className="detail__precio">$ {product.price}</p>
                     <p className="detail__texy">{product.description}</p>
                     <button className="detail__btn" onClick={() => handleAddToCart(product.id)}>Agregar al carrito</button>
                 </div>}
