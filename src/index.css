@@ -143,6 +143,22 @@ section{
   background-color: #4a8d96;
 }
 
+.card__btn {
+  background-color: #4a8d96;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.25s ease;
+}
+
+.card__btn:active {
+  background-color: #3b6e73;
+}
+
 .about{
   display:flex;
   flex-direction: column;
