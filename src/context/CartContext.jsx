@@ -4,21 +4,36 @@ export const myContext = createContext();
 
 const Provider = myContext.Provider;
 
+function CartContext({ children }) {
+    const [cart, setCart] = useState([]); //el estado inicial del carrito es vacio
 
-function CartContext(props) {
-    const [total, setTotal] = useState(0)
+    function addToCart(item) { //funcion para agregar productos al carrito
+        setCart((prevCart) => {
+            const existingItem = prevCart.find((cartItem) => 
+                cartItem.id === item.id
+            );  //verifica si el item ya existe en el carrito antes de cambiar el estado
+            
+            if (existingItem) {  // si el item ya existe, actualiza la cantidad
+                return prevCart.map((cartItem) =>
+                    cartItem.id === item.id
+                        ? { 
+                            ...cartItem,
+                             quantity: cartItem.quantity + 1
+                            }
+                        : cartItem
+                );
+            }
+            return [...prevCart, {...item, quantity: 1}]; // si el item no existe, lo agrega al carrito
+        });
+    }
 
-    const contextValue = {
-        numero: 1,
-        nombre: "Franco",
-        apellido: "Garcia",
-        total: total,
-        setTotal: setTotal,
-    };
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0); //calcula el total de items en el carrito
+
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0); //calcula el precio total de los items en el carrito
 
     return (
-    <Provider value={contextValue}>
-        {props.children}
+    <Provider value={{ cart, addToCart, totalItems, totalPrice }}>
+        {children}
     </Provider>
     )
 }

@@ -7,10 +7,10 @@ import CartContext from './context/CartContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
     <CartContext>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>  
     </CartContext>
-    </BrowserRouter>  
   </StrictMode>,
 )

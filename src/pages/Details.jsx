@@ -34,11 +34,9 @@ function Details(){
     const {id} = useParams();
     const product = products.find((p)=> p.id === Number(id));
 
-    function handleAddToCart(prodId){
-        console.log("Agregar al carrito el producto con id: ", prodId);
-        valueContext.setTotal(valueContext.total + 1); 
+    function handleAddToCart(product){
+        valueContext.addToCart(product);
     }
-
     
     return(
         <>
@@ -49,7 +47,7 @@ function Details(){
                     <img className="detail__image" src={product.images} alt={product.title} />
                     <p className="detail__precio">$ {product.price}</p>
                     <p className="detail__texy">{product.description}</p>
-                    <button className="detail__btn" onClick={() => handleAddToCart(product.id)}>Agregar al carrito</button>
+                    <button className="detail__btn" onClick={() => handleAddToCart(product)}>Agregar al carrito</button>
                 </div>}
             </section>
         </>

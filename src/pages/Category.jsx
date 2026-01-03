@@ -18,7 +18,11 @@ function Category() {
 
         getDocs(productsCollection)
             .then((response) => {
-                const productsData = response.docs.map((doc) => doc.data());
+                const productsData = response.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+
                 setProductsList(productsData);
                 setLoading(false);
             })
@@ -26,11 +30,10 @@ function Category() {
                 console.log("Error al consultar Firestore: ", error);
                 setLoading(false);
             });
-    }, []);
+    }, [category]);
 
-    function handleAddToCart(prodId){
-        console.log("Agregar al carrito el producto con id: ", prodId);
-        valueContext.setTotal(valueContext.total + 1); 
+   function handleAddToCart(product){
+        valueContext.addToCart(product);
     }
 
     if (loading) {
@@ -56,7 +59,7 @@ function Category() {
                         <img src={ prod.images} alt={prod.title} className="card__img" />
                         <p className="card__precio">{prod.price}</p>
                         <Link to={`/details/${prod.id}`} className="card__link">Ver Detalle</Link>
-                        <button className="card__btn" onClick={() => handleAddToCart(prod.id)}>Agregar al carrito</button>
+                        <button className="card__btn" onClick={() => handleAddToCart(prod)}>Agregar al carrito</button>
                     </div>   
                 ))}</div> 
             </div>
