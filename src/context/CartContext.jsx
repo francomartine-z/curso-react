@@ -34,12 +34,16 @@ function CartContext({ children }) {
         });
     }
 
+    function clearCart() {
+        setCart([]); //funcion para vaciar el carrito
+    }
+
     const totalItems = cart.reduce((total, item) => total + item.quantity, 0); //calcula el total de items en el carrito
 
     const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0); //calcula el precio total de los items en el carrito
 
     return (
-    <Provider value={{ cart, addToCart, totalItems, totalPrice }}>
+    <Provider value={{ cart, addToCart, totalItems, totalPrice , clearCart }}>
         {children}
     </Provider>
     )

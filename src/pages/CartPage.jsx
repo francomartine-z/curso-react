@@ -4,7 +4,7 @@ import { addDoc, getFirestore ,collection } from "firebase/firestore";
 import {app} from "../firebaseConfig";
 
 function CartPage() {
-    const {cart, totalItems, totalPrice} = useContext(myContext);
+    const {cart, totalItems, totalPrice, clearCart} = useContext(myContext);
     const [buyer, setBuyer] = useState({
         name: "",
         lastName: "",
@@ -19,6 +19,7 @@ function CartPage() {
         if(cart.length === 0){
             alert("El carrito esta vacio.")
             return;
+
     }
 
     const db = getFirestore(app);
@@ -33,6 +34,7 @@ function CartPage() {
     addDoc(collection(db, "orders"), order)
     .then((docRef) => {
         alert("Compra realizada con exito. Su ID de orden es: " + docRef.id);
+        clearCart();
     })
     .catch((error) => {
         console.error("Error al crear la orden: ", error);
